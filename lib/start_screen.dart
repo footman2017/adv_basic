@@ -1,27 +1,9 @@
-import 'dart:math';
-
-import 'package:adv_basic/text.dart';
+import 'package:adv_basic/text_widget.dart';
 import 'package:flutter/material.dart';
 
-final randomizer = Random();
-
-class ContentWidget extends StatefulWidget {
-  const ContentWidget({super.key});
-
-  @override
-  State<ContentWidget> createState() {
-    return _ContentWidgetState();
-  }
-}
-
-class _ContentWidgetState extends State<ContentWidget> {
-  var currentNumber = 1;
-
-  void roleDice() {
-    setState(() {
-      currentNumber = randomizer.nextInt(6) + 1;
-    });
-  }
+class StartScreen extends StatelessWidget {
+  final void Function() changeScreen;
+  const StartScreen(this.changeScreen, {super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -31,6 +13,7 @@ class _ContentWidgetState extends State<ContentWidget> {
         Image.asset(
           "images/quiz-logo.png",
           width: 300,
+          color: const Color.fromARGB(150, 255, 255, 255),
         ),
         const SizedBox(
           height: 80,
@@ -41,7 +24,7 @@ class _ContentWidgetState extends State<ContentWidget> {
         ),
         FloatingActionButton.extended(
           label: const Text("Start Quiz"),
-          onPressed: roleDice,
+          onPressed: changeScreen,
           icon: const Icon(Icons.chevron_right_rounded),
           foregroundColor: Colors.black,
           extendedTextStyle: const TextStyle(
