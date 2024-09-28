@@ -1,4 +1,6 @@
+import 'package:adv_basic/data/questions.dart';
 import 'package:adv_basic/question_screen.dart';
+import 'package:adv_basic/result_screen.dart';
 import 'package:adv_basic/start_screen.dart';
 import 'package:flutter/material.dart';
 
@@ -26,19 +28,33 @@ class _QuizState extends State<Quiz> {
   //   });
   // }
 
+  List<String> answerArr = [];
+
   var activeScreen = 'start_screen';
 
   void changeScreen() {
     setState(() {
+      answerArr = [];
       activeScreen = 'question_screen';
     });
+  }
+
+  void addAnswer(String answer) {
+    answerArr.add(answer);
+    if (answerArr.length == questions.length) {
+      setState(() {
+        activeScreen = 'result_screen';
+      });
+    }
   }
 
   @override
   Widget build(BuildContext context) {
     var activeWidget = activeScreen == 'start_screen'
         ? StartScreen(changeScreen)
-        : const QuestionScreen();
+        : activeScreen == 'result_screen'
+            ? ResultScreen(answerArr: answerArr)
+            : QuestionScreen(addAnswer);
 
     return MaterialApp(
       home: Scaffold(

@@ -4,7 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class QuestionScreen extends StatefulWidget {
-  const QuestionScreen({super.key});
+  final void Function(String answer) addAnswer;
+  const QuestionScreen(this.addAnswer, {super.key});
 
   @override
   State<QuestionScreen> createState() {
@@ -15,7 +16,8 @@ class QuestionScreen extends StatefulWidget {
 class _QuestionScreenState extends State<QuestionScreen> {
   var curretnQuestionIndex = 0;
 
-  void onTapHandler() {
+  void onTapHandler(String answer) {
+    widget.addAnswer(answer);
     setState(() {
       curretnQuestionIndex++;
     });
