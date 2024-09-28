@@ -1,4 +1,5 @@
 import 'package:adv_basic/answer_button.dart';
+import 'package:adv_basic/data/questions.dart';
 import 'package:flutter/material.dart';
 
 class QuestionScreen extends StatefulWidget {
@@ -11,27 +12,32 @@ class QuestionScreen extends StatefulWidget {
 }
 
 class _QuestionScreenState extends State<QuestionScreen> {
+  final currentQuestion = questions[0];
+
   @override
   Widget build(BuildContext context) {
     return SizedBox(
       width: double.infinity,
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          const Text(
-            "question...",
-            style: TextStyle(
-              color: Colors.white,
-              fontSize: 28.0,
+      child: Padding(
+        padding: const EdgeInsets.all(40.0),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: [
+            Text(
+              currentQuestion.text,
+              style: const TextStyle(
+                color: Colors.white,
+                fontSize: 16.0,
+              ),
+              textAlign: TextAlign.center,
             ),
-          ),
-          const SizedBox(height: 30),
-          AnswerButton("answer 1", () {}),
-          const SizedBox(height: 10),
-          AnswerButton("answer 2", () {}),
-          const SizedBox(height: 10),
-          AnswerButton("answer 3", () {}),
-        ],
+            const SizedBox(height: 30),
+            ...currentQuestion.getSuffledAnswers().map((answer) {
+              return AnswerButton(answer, () {});
+            }),
+          ],
+        ),
       ),
     );
   }
