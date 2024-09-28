@@ -30,7 +30,6 @@ class _QuestionScreenState extends State<QuestionScreen> {
         padding: const EdgeInsets.all(40.0),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
-          crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
             Text(
               currentQuestion.text,
@@ -42,7 +41,17 @@ class _QuestionScreenState extends State<QuestionScreen> {
             ),
             const SizedBox(height: 30),
             ...currentQuestion.getSuffledAnswers().map((answer) {
-              return AnswerButton(answer, onTapHandler);
+              return Column(
+                crossAxisAlignment: CrossAxisAlignment.stretch,
+                children: [
+                  AnswerButton(answer, () {
+                    onTapHandler(answer);
+                  }),
+                  const SizedBox(
+                    height: 10,
+                  )
+                ],
+              );
             }),
           ],
         ),
