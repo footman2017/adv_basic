@@ -19,7 +19,7 @@ class StartScreen extends StatelessWidget {
           const SizedBox(
             height: 80,
           ),
-          const TextWidget(text: "Lorem ipsum dolor sit amet."),
+          const TextWidget(text: "Learning the hardway"),
           const SizedBox(
             height: 30,
           ),
