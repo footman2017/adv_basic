@@ -39,6 +39,12 @@ class _QuizState extends State<Quiz> {
     });
   }
 
+    void backToStart() {
+    setState(() {
+      activeScreen = 'start_screen';
+    });
+  }
+
   void addAnswer(String answer) {
     answerArr.add(answer);
     if (answerArr.length == questions.length) {
@@ -53,7 +59,7 @@ class _QuizState extends State<Quiz> {
     var activeWidget = activeScreen == 'start_screen'
         ? StartScreen(changeScreen)
         : activeScreen == 'result_screen'
-            ? ResultScreen(answerArr: answerArr)
+            ? ResultScreen(answerArr: answerArr, backToStart: backToStart)
             : QuestionScreen(addAnswer);
 
     return MaterialApp(
