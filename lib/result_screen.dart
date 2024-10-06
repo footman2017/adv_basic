@@ -57,7 +57,18 @@ class ResultScreen extends StatelessWidget {
             ),
             SizedBox(
               width: 150,
-              child: OutlinedButton(
+              child: OutlinedButton.icon(
+                label: Text(
+                  'Restart',
+                  style: GoogleFonts.lato(
+                      color: Colors.white,
+                      fontSize: 14.0,
+                      fontWeight: FontWeight.bold),
+                ),
+                icon: const Icon(
+                  Icons.restart_alt,
+                  color: Colors.white,
+                ),
                 style: OutlinedButton.styleFrom(
                   shape: const RoundedRectangleBorder(
                     borderRadius: BorderRadius.all(Radius.circular(10)),
@@ -65,35 +76,24 @@ class ResultScreen extends StatelessWidget {
                   side: const BorderSide(color: Colors.white),
                 ),
                 onPressed: restart,
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    const Icon(
-                      Icons.restart_alt,
-                      color: Colors.white,
-                    ),
-                    Text(
-                      'Restart',
-                      style: GoogleFonts.lato(
-                          color: Colors.white,
-                          fontSize: 14.0,
-                          fontWeight: FontWeight.bold),
-                    ),
-                  ],
-                ),
+                // child: Row(
+                //   mainAxisAlignment: MainAxisAlignment.center,
+                //   children: [
+                //     const Icon(
+                //       Icons.restart_alt,
+                //       color: Colors.white,
+                //     ),
+                //     Text(
+                //       'Restart',
+                //       style: GoogleFonts.lato(
+                //           color: Colors.white,
+                //           fontSize: 14.0,
+                //           fontWeight: FontWeight.bold),
+                //     ),
+                //   ],
+                // ),
               ),
             ),
-            // FloatingActionButton.extended(
-            //   label: const Text("Restart"),
-            //   onPressed: restart,
-            //   icon: const Icon(Icons.chevron_right_rounded),
-            //   foregroundColor: Colors.black,
-            //   extendedTextStyle: const TextStyle(
-            //     fontWeight: FontWeight.bold,
-            //     fontSize: 22,
-            //   ),
-            //   backgroundColor: Colors.purpleAccent,
-            // )
           ],
         ),
       ),
