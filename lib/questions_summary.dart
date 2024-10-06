@@ -19,9 +19,9 @@ class QuestionsSummary extends StatelessWidget {
                   margin: const EdgeInsets.only(right: 10),
                   width: 30.0,
                   height: 30.0,
-                  decoration: const BoxDecoration(
-                      color: Colors.green,
-                      borderRadius: BorderRadius.all(Radius.circular(25.0))),
+                  decoration: BoxDecoration(
+                      color: data["is_correct"] ? Colors.green : const Color.fromARGB(255, 163, 35, 26),
+                      borderRadius: const BorderRadius.all(Radius.circular(25.0))),
                   child: Center(
                     child: Text(
                       ((data["question_index"] as int) + 1).toString(),
@@ -35,6 +35,7 @@ class QuestionsSummary extends StatelessWidget {
                 ),
                 Expanded(
                   child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
                         data["question"].toString(),
@@ -46,8 +47,20 @@ class QuestionsSummary extends StatelessWidget {
                       const SizedBox(
                         height: 5,
                       ),
-                      Text(data["user_answer"].toString()),
-                      Text(data["correct_answer"].toString()),
+                      Text(
+                        data["user_answer"].toString(),
+                        style: GoogleFonts.lato(
+                            color: const Color.fromARGB(255, 14, 199, 85),
+                            fontSize: 14.0,
+                            fontWeight: FontWeight.bold),
+                      ),
+                      Text(
+                        data["correct_answer"].toString(),
+                        style: GoogleFonts.lato(
+                            color: const Color.fromARGB(255, 10, 44, 138),
+                            fontSize: 14.0,
+                            fontWeight: FontWeight.bold),
+                      ),
                     ],
                   ),
                 )

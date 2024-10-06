@@ -5,9 +5,9 @@ import 'package:google_fonts/google_fonts.dart';
 
 class ResultScreen extends StatelessWidget {
   final List<String> answerArr;
-  final void Function() backToStart;
+  final void Function() restart;
   const ResultScreen(
-      {super.key, required this.answerArr, required this.backToStart});
+      {super.key, required this.answerArr, required this.restart});
 
   List<Map<String, dynamic>> generateSummary() {
     final List<Map<String, dynamic>> summary = [];
@@ -17,7 +17,8 @@ class ResultScreen extends StatelessWidget {
         'question_index': i,
         'question': questions[i].text,
         'correct_answer': questions[i].answers[0],
-        'user_answer': answerArr[i]
+        'user_answer': answerArr[i],
+        'is_correct': questions[i].answers[0] == answerArr[i]
       });
     }
 
@@ -54,17 +55,45 @@ class ResultScreen extends StatelessWidget {
             const SizedBox(
               height: 30,
             ),
-            FloatingActionButton.extended(
-              label: const Text("Restart"),
-              onPressed: backToStart,
-              icon: const Icon(Icons.chevron_right_rounded),
-              foregroundColor: Colors.black,
-              extendedTextStyle: const TextStyle(
-                fontWeight: FontWeight.bold,
-                fontSize: 22,
+            SizedBox(
+              width: 150,
+              child: OutlinedButton(
+                style: OutlinedButton.styleFrom(
+                  shape: const RoundedRectangleBorder(
+                    borderRadius: BorderRadius.all(Radius.circular(10)),
+                  ),
+                  side: const BorderSide(color: Colors.white),
+                ),
+                onPressed: restart,
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    const Icon(
+                      Icons.restart_alt,
+                      color: Colors.white,
+                    ),
+                    Text(
+                      'Restart',
+                      style: GoogleFonts.lato(
+                          color: Colors.white,
+                          fontSize: 14.0,
+                          fontWeight: FontWeight.bold),
+                    ),
+                  ],
+                ),
               ),
-              backgroundColor: Colors.purpleAccent,
-            )
+            ),
+            // FloatingActionButton.extended(
+            //   label: const Text("Restart"),
+            //   onPressed: restart,
+            //   icon: const Icon(Icons.chevron_right_rounded),
+            //   foregroundColor: Colors.black,
+            //   extendedTextStyle: const TextStyle(
+            //     fontWeight: FontWeight.bold,
+            //     fontSize: 22,
+            //   ),
+            //   backgroundColor: Colors.purpleAccent,
+            // )
           ],
         ),
       ),
